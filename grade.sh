@@ -8,6 +8,7 @@ mkdir grading-area
 git clone $1 student-submission
 echo 'Finished cloning'
 
+#checking if list examples exists
 if [ -e student-submission/ListExamples.java ]
 then    
     echo 'Exists'
@@ -16,18 +17,24 @@ else
     exit 
 fi
 
+#copying the info from submission to grading area
 cp -v student-submission/* grading-area/
 
+#compiling the submitted stuff from student
 javac grading-area/*.java
 
+#checking if successfully compiled
 if [ $? -eq 0 ]
 then
-    echo 'Sucessfully Compiled'
+    echo 'Sucessfully Compiled Student Submission'
 else 
-    echo 'Failed to Compile'
+    echo 'Failed to Compile Student Submission'
 fi
 
-rm -rf grading-area
+#compiling TestList Examples
+javac TestListExamples.java
+
+
 
 # Draw a picture/take notes on the directory structure that's set up after
 # getting to this point
