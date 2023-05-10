@@ -15,6 +15,20 @@ else
     echo 'Could not find ListExamples.java'
     exit 
 fi
+
+cp -v student-submission/* grading-area/
+
+javac grading-area/*.java
+
+if [ $? -eq 0 ]
+then
+    echo 'Sucessfully Compiled'
+else 
+    echo 'Failed to Compile'
+fi
+
+rm -rf grading-area
+
 # Draw a picture/take notes on the directory structure that's set up after
 # getting to this point
 
