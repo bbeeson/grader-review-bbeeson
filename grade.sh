@@ -12,5 +12,7 @@ echo 'Finished cloning'
 # Draw a picture/take notes on the directory structure that's set up after
 # getting to this point
 
+#temp push
+
 # Then, add here code to compile and run, and do any post-processing of the
 # tests
