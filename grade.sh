@@ -14,7 +14,7 @@ then
     echo 'Exists'
 else
     echo 'Could not find ListExamples.java'
-    exit 
+    exit 1
 fi
 
 #copying the info from submission to grading area
@@ -29,10 +29,30 @@ then
     echo 'Sucessfully Compiled Student Submission'
 else 
     echo 'Failed to Compile Student Submission'
+    exit 1
 fi
 
-#compiling TestList Examples
-javac TestListExamples.java
+cp *.java grading-area/
+cp lib/* grading-area/
+
+#compiling TestList Examples 
+javac -classpath grading-area/\* grading-area/*.java
+
+cd grading-area
+java -cp ".;junit-4.13.2.jar;hamcrest-core-1.3.jar;grading-area/*.java" org.junit.runner.JUnitCore TestListExamples > temp.txt
+
+
+if [ "" = "`grep "FAILURES" temp.txt`" ]
+then 
+    echo 'Passed Tests in TestListExample'
+    exit 0
+else 
+    echo 'Failed Tests for TestListExample'
+    exit 1
+fi
+
+
+
 
 
 
